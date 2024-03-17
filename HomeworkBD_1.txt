@@ -1,0 +1,64 @@
+CREATE TABLE "actors_1" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"name"	TEXT NOT NULL,
+	"surname"	TEXT NOT NULL,
+	"age"	INTEGER NOT NULL,
+	"movie_name"	TEXT,
+	"budget"	TEXT DEFAULT 10000000,
+	"manager"	TEXT,
+	"release_year"	INTEGER,
+	"sex"	TEXT NOT NULL,
+	"fee_actors"	INTEGER,
+	"city"	TEXT,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+
+
+#наполнение таблицы
+INSERT INTO actors_1 (id, name,  surname, age, movie_name, budget, manager, release_year, sex, fee, city)
+VALUES
+(1, "Al", "Pacino", 84, "Крестный отец", 75000000, "Francis Ford Coppola", 1972, "male", 1000000, "New York"),
+(2, "Robert", "Deniro", 81, "Крестный отец", 75000000, "Francis Ford Coppola", 1972, "male", 20000000, "Washington"),
+(3, "Denzel", "Washington", 70, "Великий уравнитель", 55000000, "Antuan Fakyn", 2014, "male", 5000000, "New York"),
+(4, "Morgan", "Freeman", 90, "Побег из Шоушенка", 25000000, "Frank Darabant", 1994, "male", 4000000, "Toronto"),
+(5, "Brad", "Pitt", 60, "Мистер и миссис Смит", 110000000, "Dag Liman", 2005, "male", 60000000, "London"),
+(6, "Clin", "Eastwood", 93, "Гран Торино", 11000000, "Clin Eastwood", 2008, "male", 4500000, "London"),
+(7, "Leonardo", "DiCaprio", 49, "Титаник", 200000000, "James Cameron", 1997, "male", 5200000, "Moskow"),
+(8, "Keanu", "Reeves", 59, "Джон Уик", 20000000, "Chad Stahelski", 2014, "male", 3200000, "New York"),
+(9, "Gary", "Oldman", 66, "Медленные лошади", 21000000, "James House", 2022, "male", 7800000, "Paris"),
+(10, "Danila", "Kozlovski", 38, "Духлесс", 24000000, "Roman Prygynov", 2022, "male", 9300000, "Moskow"),
+(11, "Margarita", "Abroskina", 29, "Регби", 21000000, "Anna Mironihina", 2021, "female", 4300000, "Praha"),
+(12, "Milosh", "Bikovich", 36, "Крылья империи", 9000000, "Anton Filatov", 2020, "male", 98000000, "Minsk"),
+(13, "Lubov", "Aksenova", 34, "Бывшие", 9500000, "Anton Filatov", 2020, "female", 1200000, "Vitebsk"),
+(14, "Anna", "Chipovskaya", 36, "Вычислитель", 12000000, "Anton Filatov", 2021, "female", 7300000, "Milan"),
+(15, "Ravshana", "Kyrkova", 43, "Контакт", 11000000, "Anton Vasiliev", 20219, "female", 5000000, "Milan");
+
+#добавление колонки fee REAL
+ALTER TABLE actors_1 ADD COLUMN fee_REAL INTEGER;
+
+
+#переименовние колонки fee REAL в fee_actors; добавление колонки city
+ALTER TABLE actors_1 RENAME fee TO fee_actors;
+
+
+#вывести всех актеров которые снимались в период с 1990 по 2000 годы. Актеры должны выводить один раз
+SELECT DISTING name, surname from actors_1 WHERE release_year >= 1970 and release_year <=2000;
+
+#Вывести все фильмы в которых приняли участие 2 и более актёра из нашей базы данных. Вывод организовать в порядке возрастания фамилий!
+SELECT DISTINCT movie_name, COUNT (movie_name) FROM actors_1 ORDER BY movie_name ASC;
+
+#Вывести количество актёров мужского пола, которые есть в таблице которые старше 55 лет.
+SELECT COUNT (surname)  AS "Количество мужчин старше 55 лет" FROM actors_1 WHERE sex ="male" AND age>=55;
+
+
+#Вывести всех актёров которые приняли участие в 2-х и более фильмах, которые есть а бд и которые имеют на своём счету 10000000$.
+SELECT name, surname, COUNT (movie_name) FROM actors_1 WHERE fee_actors>= 10000000 GROUP BY name, surname HAVING COUNT (movie_name)>=2
+
+#Вывести общую сумму всех гонораров актёров в фильмах снятых в период с 1995 по 2005 год.
+SELECT SUM (fee_actors) FROM actors_1 WHERE release_year >=1995 and release_year <=2005
+
+#Вывести фильмы и имена и фамилии актёров, которым на момент выпуска фильма в прокат было меньше 35 лет.
+SELECT movie_name, name, surname FROM actors_1 WHERE 2024 - release_year<= 34
+
+
+
