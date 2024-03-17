@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+#1. Cоздаем таблицу
+
+>>>>>>> f51d167 (Initial commit)
 CREATE TABLE "actors_1" (
 	"id"	INTEGER NOT NULL UNIQUE,
 	"name"	TEXT NOT NULL,
@@ -8,12 +13,17 @@ CREATE TABLE "actors_1" (
 	"manager"	TEXT,
 	"release_year"	INTEGER,
 	"sex"	TEXT NOT NULL,
+<<<<<<< HEAD
 	"fee_actors"	INTEGER,
 	"city"	TEXT,
+=======
+
+>>>>>>> f51d167 (Initial commit)
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
 
 
+<<<<<<< HEAD
 #наполнение таблицы
 INSERT INTO actors_1 (id, name,  surname, age, movie_name, budget, manager, release_year, sex, fee, city)
 VALUES
@@ -60,5 +70,128 @@ SELECT SUM (fee_actors) FROM actors_1 WHERE release_year >=1995 and release_year
 #Вывести фильмы и имена и фамилии актёров, которым на момент выпуска фильма в прокат было меньше 35 лет.
 SELECT movie_name, name, surname FROM actors_1 WHERE 2024 - release_year<= 34
 
+=======
+# Наполнение таблицы
+
+INSERT INTO actors_1 (id, name,  surname, age, movie_name, budget, manager, release_year, sex, )
+VALUES
+(1, "Al", "Pacino", 84, "Крестный отец", 75000000, "Francis Ford Coppola", 1972, "male"),
+(2, "Robert", "Deniro", 81, "Крестный отец", 75000000, "Francis Ford Coppola", 1972, "male"),
+(3, "Denzel", "Washington", 70, "Великий уравнитель", 55000000, "Antuan Fakyn", 2014, "male"),
+(4, "Morgan", "Freeman", 90, "Побег из Шоушенка", 25000000, "Frank Darabant", 1994, "male"),
+(5, "Brad", "Pitt", 60, "Мистер и миссис Смит", 110000000, "Dag Liman", 2005, "male"),
+(6, "Clin", "Eastwood", 93, "Гран Торино", 11000000, "Clin Eastwood", 2008, "male"),
+(7, "Leonardo", "DiCaprio", 49, "Титаник", 200000000, "James Cameron", 1997, "male"),
+(8, "Keanu", "Reeves", 59, "Джон Уик", 20000000, "Chad Stahelski", 2014, "male"),
+(9, "Gary", "Oldman", 66, "Медленные лошади", 21000000, "James House", 2022, "male"),
+(10, "Danila", "Kozlovski", 38, "Духлесс", 24000000, "Roman Prygynov", 2022, "male"),
+(11, "Margarita", "Abroskina", 29, "Регби", 21000000, "Anna Mironihina", 2021, "female"),
+(12, "Milosh", "Bikovich", 36, "Крылья империи", 9000000, "Anton Filatov", 2020, "male"),
+(13, "Lubov", "Aksenova", 34, "Бывшие", 9500000, "Anton Filatov", 2020, "female"),
+(14, "Anna", "Chipovskaya", 36, "Вычислитель", 12000000, "Anton Filatov", 2021, "female"),
+(15, "Ravshana", "Kyrkova", 43, "Контакт", 11000000, "Anton Vasiliev", 20219, "female");
+
+#2. Добавление колонки fee REAL
+
+ALTER TABLE actors_1 ADD COLUMN fee_REAL INTEGER;
+
+# Заполнение значений гонорара
+
+UPDATE actors_1 SET fee_REAL = 4000000 WHERE id = 1;
+UPDATE actors_1 SET fee_REAL = 5000000 WHERE id = 2;
+UPDATE actors_1 SET fee_REAL = 5500000 WHERE id = 3;
+UPDATE actors_1 SET fee_REAL = 12000000 WHERE id = 4;
+UPDATE actors_1 SET fee_REAL = 5300000 WHERE id = 5;
+UPDATE actors_1 SET fee_REAL = 2000000 WHERE id = 6;
+UPDATE actors_1 SET fee_REAL = 11000000 WHERE id = 7;
+UPDATE actors_1 SET fee_REAL = 15000000 WHERE id = 8;
+UPDATE actors_1 SET fee_REAL = 34000000 WHERE id = 9;
+UPDATE actors_1 SET fee_REAL = 11000000 WHERE id = 10;
+UPDATE actors_1 SET fee_REAL = 5600000 WHERE id = 11;
+UPDATE actors_1 SET fee_REAL = 53300000 WHERE id = 12;
+UPDATE actors_1 SET fee_REAL = 8000000 WHERE id = 13;
+UPDATE actors_1 SET fee_REAL = 11000000 WHERE id = 14;
+UPDATE actors_1 SET fee_REAL = 19000000 WHERE id = 15;
+
+
+#3. Переименовние колонки fee_REAL в fee_actors;
+
+ALTER TABLE actors_1 RENAME fee_REAL TO fee_actors;
+
+# Добавление колонки "city"
+
+ALTER TABLE actors_1 ADD COLUMN city TEXT;
+
+# Внесение изменений в таблицу о местах жительства актеров
+
+UPDATE actors_1 SET city = "NEW YORK" WHERE id = 1;
+UPDATE actors_1 SET city = "WASHINGTON" WHERE id = 2;
+UPDATE actors_1 SET city = "NEW YORK" WHERE id = 3;
+UPDATE actors_1 SET city = "LONDON" WHERE id = 4;
+UPDATE actors_1 SET city = "PARIS" WHERE id = 5;
+UPDATE actors_1 SET city = "VENEZIA" WHERE id = 6;
+UPDATE actors_1 SET city = "MARCELE" WHERE id = 7;
+UPDATE actors_1 SET city = "NEW YORK" WHERE id = 8;
+UPDATE actors_1 SET city = "MOSCOW" WHERE id = 9;
+UPDATE actors_1 SET city = "MINSK" WHERE id = 10;
+UPDATE actors_1 SET city = "SAN FRANCISCO" WHERE id = 11;
+UPDATE actors_1 SET city = "NEW YORK" WHERE id = 12;
+UPDATE actors_1 SET city = "FLORIDA" WHERE id = 13;
+UPDATE actors_1 SET city = "VITEBSK" WHERE id = 14;
+UPDATE actors_1 SET city = "GRODNO" WHERE id = 15;
+
+#4. Вывести всех актеров которые снимались в период с 1990 по 2000 годы. Актеры должны выводить один раз
+
+SELECT DISTING name, surname from actors_1 WHERE release_year >= 1970 and release_year <=2000;
+
+--ANSWER:--
+Al	Pacino
+Robert	Deniro
+Morgan	Freeman
+Leonardo DiCaprio
+
+
+#5. Вывести все фильмы в которых приняли участие 2 и более актёра из нашей базы данных. Вывод организовать в порядке возрастания фамилий!
+
+UPDATE actors_1 SET movie_name= "Крестный отец" WHERE id = 15;
+UPDATE actors_1 SET movie_name= "Джон Уик" WHERE id = 9;
+
+# Вывод
+SELECT movie_name, COUNT (movie_name) AS "Количество актеров" FROM actors_1 GROUP BY movie_name HAVING COUNT (movie_name)>=2 ORDER BY movie_name ASC;
+
+#6. Вывести количество актёров мужского пола, которые есть в таблице которые старше 55 лет.
+
+SELECT COUNT (surname)  AS "Количество мужчин старше 55 лет" FROM actors_1 WHERE sex ="male" AND age>=55;
+
+#7. Вывести всех актёров которые приняли участие в 2-х и более фильмах, которые есть а бд и которые имеют на своём счету 10000000$.
+
+INSERT INTO actors_1 (id, name,  surname, age, movie_name, budget, manager, release_year, sex, fee_actors, city)
+VALUES (16, "Al", "Pacino", 84, "Гран Торино", 51000000, "Clin Eastwood", 2008, "male", 6700000, "NEW YORK"), (8, "Keanu", "Reeves", 59, "Крестный отец", 75000000, "Francis Ford Coppola", 1972, "male", 9000000, "CALIFORNIA");
+
+# Вывод
+SELECT name, surname, COUNT (movie_name) FROM actors_1 WHERE fee_actors>= 10000000 GROUP BY movie_name HAVING COUNT (movie_name)>=2
+
+
+#8. Вывести общую сумму всех гонораров актёров в фильмах снятых в период с 1995 по 2005 год.
+
+SELECT SUM (fee_actors) FROM actors_1 WHERE release_year >=1995 and release_year <=2005
+
+#9. Вывести фильмы и имена и фамилии актёров, которым на момент выпуска фильма в прокат было меньше 35 лет.
+
+SELECT movie_name, name, surname FROM actors_1 WHERE 2024 - release_year<= 34
+
+#10. Вывести все фильмы название которых состоит из 2 слов. Использовать регулярные выражения.
+
+SELECT movie_name FROM actors_1 WHERE movie_name like '% %' and movie_name NOT like '% % %'
+
+#11. Вывести  фильмы и общие выплаты актёрам. В порядке убывания общей суммы гонораров. Вывести первые 5 фильмов.
+
+SELECT movie_name, fee_actors FROM actors_1 ORDER by fee_actors DESC LIMIT 5
+
+#12. Вывести  фильм в котором приняло участие большее число актёров из вашей бд.
+
+SELECT movie_name,count (movie_name) FROM actors_1 GROUP by movie_name HAVING count(movie_name) order by count (movie_name) DESC limit 1;
+
+>>>>>>> f51d167 (Initial commit)
 
 
