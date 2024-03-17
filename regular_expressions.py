@@ -49,7 +49,7 @@ print(re.findall(pattern, list))
 """
 
 import re
-pattern = 'human'
+pattern = r'human'
 repl = 'computer'
 list = 'same dollar human old town Minsk human slack'
 print(f'До замены: {list}')
@@ -61,7 +61,7 @@ print (f'После замены: {re.sub(pattern, repl, list, count=0)}')
 """
 
 import re
-pattern = '\s\d{4}\-\d{2}\-\d{2}'
+pattern = r'\s\d{4}\-\d{2}\-\d{2}'
 list = '20000-05-044 2022-02-28 2023-03-29 DZIANIS somelist'
 print(re.findall(pattern, list))
 
@@ -71,20 +71,20 @@ print(re.findall(pattern, list))
 """
 
 import re
-pattern = '\w*b\w*'
+pattern = r'\w*b\w*'
 list = 'asram frodo beggins color home visa  borimor mazda orbitrazh mercedes'
 print (re.findall(pattern, list))
 
 #Exercise #9
 """
 В каждой строке замените все вхождения нескольких одинаковых букв
-на одну букву. Буквой считается символ из группы \w.
+на одну букву. Буквой считается символ из группы 
 """
 
 import re
 pattern = r'(\w)\1+'
 repl = 'M'
-list = 'Anna Smmaa Suhar summer metbkr mmmaa'
+list = r'Anna Smmaa Suhar summer metbkr mmmaa'
 print(re.findall(pattern, list))
 print(re.sub(pattern, repl, list, count=0))
 
@@ -96,7 +96,7 @@ print(re.sub(pattern, repl, list, count=0))
 """
 #написал под две youtube-ссылки
 import re
-pattern = '\w*[p,s]://w{3}\.[A-Za-z0-9]+\.\w*/\D*[=?]+\w*'
+pattern = r'\w*[p,s]://w{3}\.[A-Za-z0-9]+\.\w*/\D*[=?]+\w*'
 list = 'httopp//fjfhjkdlld https://www.onliner.by https://beseller.by/blog/redirekty/ https://www.youtube.com/watch?v=hXyLAB72YBI https://www.youtube.com/watch?v=qnOj7IXNuME http://twitter.com fhfgdkdjjdd'
 print(re.findall(pattern, list))
 
@@ -106,6 +106,6 @@ print(re.findall(pattern, list))
 """
 
 import re
-pattern = '\<+[A-Za-z0-9!\s+]+\>'
+pattern = r'\<+[A-Za-z0-9!\s+]+\>'
 list = ' <html> <head> <title> рараоао <!DOCTYPE html>Событие source onmessage <meta name> initial-scale=1'
 print (re.findall(pattern,list))
