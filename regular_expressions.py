@@ -1,4 +1,4 @@
-#Homework регулярные выражения
+#Homework "РЕГУЛЯРНЫЕ ВЫРАЖЕНИЯ"
 #DZIANIS MASHKOVICH
 #17.03.2024
 
